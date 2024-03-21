@@ -1,0 +1,41 @@
+# ログファイル
+*.log
+
+# 依存関係ディレクトリ
+node_modules
+
+# ビルドディレクトリ
+dist
+
+# ソースマップ
+*.map
+
+# システムファイル
+.DS_Store
+Thumbs.db
+
+# エディタ設定
+.editorconfig
+.vscode
+
+# 開発用スクリプト
+*.sh
+
+# 環境設定ファイル
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# READMEファイル
+README.md
+
+# Git関連
+.git
+.gitignore
+
+# その他不要なファイルやディレクトリ
+tmp
+*.tmp
+*.swp

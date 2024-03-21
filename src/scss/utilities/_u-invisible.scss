@@ -1,0 +1,17 @@
+@use '../global/index' as g;
+
+.for {
+  &-sp {
+    display: none;
+    @include g.mq(sp) {
+      display: block;
+    }
+  }
+
+  &-pc {
+    display: block;
+    @include g.mq(sp) {
+      display: none;
+    }
+  }
+}

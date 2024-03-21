@@ -1,0 +1,22 @@
+@use '../global' as *;
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+html {
+  font-size: 13px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: #eaeaea;
+
+  @include mq(ipad) {
+    font-size: 12px;
+  }
+
+  @include mq(sp) {
+    font-size: 10px;
+  }
+}

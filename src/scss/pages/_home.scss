@@ -1,0 +1,25 @@
+@use '../global/index' as *;
+
+#home-page {
+  @include wrap-sp;
+
+  & .loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__ttl {
+      @include text(
+        $font-size: 3.6rem,
+        $font-weight: bold,
+        $line-height: 9.2rem
+      );
+      writing-mode: vertical-rl;
+    }
+  }
+}
