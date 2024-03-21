@@ -1,14 +1,10 @@
 @use '../global/index' as *;
 
 #home-page {
-  @include wrap-sp;
-
   & .loading {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,9 +13,42 @@
       @include text(
         $font-size: 3.6rem,
         $font-weight: bold,
-        $line-height: 9.2rem
+        $line-height: 9.2rem,
+        $letter-spacing: 1rem
       );
       writing-mode: vertical-rl;
+    }
+
+    &__img {
+      position: absolute;
+
+      &.--pu {
+        top: 6rem;
+        left: 0;
+        width: 15.3rem;
+        height: 32.6rem;
+      }
+
+      &.--ham {
+        top: 9.2rem;
+        right: 0;
+        width: 8.3rem;
+        height: 13.7rem;
+      }
+
+      &.--kopu {
+        bottom: 0;
+        left: 0;
+        width: 13.2rem;
+        height: 14rem;
+      }
+
+      &.--daf {
+        bottom: 0;
+        right: 0;
+        width: 16.7rem;
+        height: 16.3rem;
+      }
     }
   }
 }
