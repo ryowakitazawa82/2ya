@@ -37,7 +37,7 @@ Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
       image.className = 'memory__image';
       image.src = `./assets/images/memory_${i}.jpg`;
 
-      if (i === 1) {
+      if (i === 2) {
         dateChange();
       }
 
