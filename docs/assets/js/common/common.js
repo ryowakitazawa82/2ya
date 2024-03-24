@@ -3,13 +3,6 @@
  */
 
 /**
- * DOMの読み込みが完了したら実行
- */
-document.addEventListener('DOMContentLoaded', () => {
-  dateChange();
-});
-
-/**
  * 日付をカウントアップする処理
  */
 const startDate = new Date(2022, 2, 18); // 月は0から始まるため、3月は2となります。
@@ -40,9 +33,13 @@ Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
     () => {
       const frame = document.createElement('div');
       frame.className = 'memory__frame';
-      const image = document.createElement('img');
+      const image = new Image(); // ここを変更
       image.className = 'memory__image';
       image.src = `./assets/images/memory_${i}.jpg`;
+
+      if (i === 1) {
+        dateChange();
+      }
 
       // ランダムな位置と回転を設定
       const positionX = `${Math.random() * 100}%`;
@@ -64,11 +61,15 @@ Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
         memoryMask.style.zIndex = zIndex - 24;
       }
 
-      frame.appendChild(image);
-      memory.appendChild(frame);
+      // 画像の読み込みが完了したらDOMに追加
+      image.onload = () => {
+        // ここを追加
+        frame.appendChild(image);
+        memory.appendChild(frame);
 
-      // ふわっと表示
-      setTimeout(() => (frame.style.opacity = '1'), 10);
+        // ふわっと表示
+        setTimeout(() => (frame.style.opacity = '1'), 10);
+      };
     },
     i * (9500 / 45)
   );
