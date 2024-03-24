@@ -23,6 +23,43 @@ const dateChange = setInterval(() => {
   if (startDate >= endDate) {
     clearInterval(dateChange);
   }
-  document.getElementById('date').innerText =
-    `${startDate.getFullYear()}年${startDate.getMonth() + 1}月${startDate.getDate()}日`;
+  const year = startDate.getFullYear();
+  const month = ('0' + (startDate.getMonth() + 1)).slice(-2); // 一桁の場合は0を追加
+  const date = ('0' + startDate.getDate()).slice(-2); // 一桁の場合は0を追加
+  document.getElementById('date').innerText = `${year}年${month}月${date}日`;
 }, interval);
+
+/**
+ * 画像の生成を行う処理
+ */
+const memory = document.getElementById('memory');
+Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
+  setTimeout(
+    () => {
+      const frame = document.createElement('div');
+      frame.className = 'memory__frame';
+      const image = document.createElement('img');
+      image.className = 'memory__image';
+      image.src = `./assets/images/memory_${i}.jpg`;
+
+      // ランダムな位置と回転を設定
+      const positionX = `${Math.random() * 100}%`;
+      const positionY = `${Math.random() * 100}%`;
+      const rotate = `${Math.random() * 48 - 24}deg`; // -24度から24度の範囲
+      frame.style.position = 'absolute';
+      frame.style.left = positionX;
+      frame.style.top = positionY;
+      frame.style.transform = `translate(-50%, -50%) rotate(${rotate})`;
+      frame.style.opacity = '0';
+      frame.style.transition = 'opacity 0.5s';
+      frame.style.zIndex = zIndex++; // 画像が生成されるたびにz-indexを増加
+
+      frame.appendChild(image);
+      memory.appendChild(frame);
+
+      // ふわっと表示
+      setTimeout(() => (frame.style.opacity = '1'), 10);
+    },
+    i * (10000 / 45)
+  ); // 10秒間に45枚の画像を生成
+});
