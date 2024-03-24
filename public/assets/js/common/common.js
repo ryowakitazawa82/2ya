@@ -33,6 +33,8 @@ const dateChange = setInterval(() => {
  * 画像の生成を行う処理
  */
 const memory = document.getElementById('memory');
+const memoryMask = document.querySelector('.memory__mask');
+let zIndex = 0;
 Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
   setTimeout(
     () => {
@@ -52,7 +54,15 @@ Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
       frame.style.transform = `translate(-50%, -50%) rotate(${rotate})`;
       frame.style.opacity = '0';
       frame.style.transition = 'opacity 0.5s';
-      frame.style.zIndex = zIndex++; // 画像が生成されるたびにz-indexを増加
+
+      // z-indexを1ずつ上げる
+      zIndex++;
+      frame.style.zIndex = zIndex;
+
+      // 指定個数以降の画像はマスクの下に表示
+      if (zIndex > 24) {
+        memoryMask.style.zIndex = zIndex - 24;
+      }
 
       frame.appendChild(image);
       memory.appendChild(frame);
@@ -60,6 +70,6 @@ Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
       // ふわっと表示
       setTimeout(() => (frame.style.opacity = '1'), 10);
     },
-    i * (10000 / 45)
-  ); // 10秒間に45枚の画像を生成
+    i * (9500 / 45)
+  );
 });
