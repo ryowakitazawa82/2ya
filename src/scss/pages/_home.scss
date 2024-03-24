@@ -18,7 +18,7 @@
   & .memory {
     height: 100vh;
     position: relative;
-    z-index: 1;
+    z-index: $zIndex-memory;
     overflow: hidden;
 
     &__mask {
@@ -65,13 +65,23 @@
     text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   }
 
-  & .loading {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+  & .cong {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+    opacity: 0;
+    transition: all 1.2s ease;
+    z-index: $zIndex-cong;
+
+    &.-show {
+      opacity: 1;
+    }
 
     &__ttl {
       @include text(
@@ -81,6 +91,11 @@
         $letter-spacing: 1rem
       );
       writing-mode: vertical-rl;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 37rem;
     }
 
     &__img {

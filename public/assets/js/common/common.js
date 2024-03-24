@@ -72,4 +72,61 @@ Array.from({ length: 45 }, (_, i) => i + 1).forEach(i => {
     },
     i * (9500 / 45)
   );
+
+  // 全ての処理が完了したらおめでとうの文字を表示
+  if (i === 45) {
+    setTimeout(() => {
+      showCong();
+    }, 11000);
+  }
 });
+
+/**
+ * おめでとうの文字を表示する処理
+ */
+class TextAnimation {
+  constructor(el) {
+    this.DOM = {};
+    this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
+    this.chars = this.DOM.el.innerHTML.trim().split('');
+    this.DOM.el.innerHTML = this._splitText();
+  }
+  _splitText() {
+    return this.chars.reduce((acc, curr) => {
+      curr = curr.replace(/\s+/, '&nbsp;');
+      return `${acc}<span class="char">${curr}</span>`;
+    }, '');
+  }
+  animate() {
+    this.DOM.el.classList.toggle('inview');
+  }
+}
+class TweenTextAnimation extends TextAnimation {
+  constructor(el) {
+    super(el);
+    this.DOM.chars = this.DOM.el.querySelectorAll('.char');
+  }
+
+  animate() {
+    this.DOM.el.classList.add('inview');
+    this.DOM.chars.forEach((c, i) => {
+      TweenMax.to(c, 0.6, {
+        ease: Back.easeOut,
+        delay: i * 0.05,
+        startAt: { x: '-50%', opacity: 0 },
+        x: '0%',
+        opacity: 1,
+      });
+    });
+  }
+}
+const cong = document.getElementById('cong');
+const congTtl = document.getElementById('cong-ttl');
+const ta = new TextAnimation(congTtl);
+const showCong = () => {
+  cong.classList.add('-show');
+  // 2秒遅らせる
+  setTimeout(() => {
+    ta.animate();
+  }, 1000);
+};
