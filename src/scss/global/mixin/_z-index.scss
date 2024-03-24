@@ -1,7 +1,7 @@
 /*********************************/
 /*       z-indexを管理            */
 /*********************************/
-$zIndex-header: 100;
-$zIndex-fv-movie: -3;
-$zIndex-fv-contents: -2;
-$zIndex-fv-mask: -1;
+$zIndex-mask: -1;
+$zIndex-memory: 1;
+$zIndex-date: 2;
+$zIndex-cong: 3;

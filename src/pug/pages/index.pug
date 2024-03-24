@@ -1,12 +1,14 @@
 extends ../layouts/index
 
 block content
-  #mask
   main#home-page
-    #date 2022年03月18日
-    //- #loading.loading
-    //-   h1.loading__ttl 二年間ありがとう
-    //-   img.loading__img.--pu(src='./assets/images/nepu.png')
-    //-   img.loading__img.--ham(src='./assets/images/ham.png')
-    //-   img.loading__img.--kopu(src='./assets/images/kopu.png')
-    //-   img.loading__img.--daf(src='./assets/images/daf.png')
+    #mask.mask
+    #memory.memory
+      .memory__mask
+    #date.date 2022年03月18日
+    #cong.cong
+      h1#cong-ttl.cong__ttl.animate-title 二年間ありがとう
+      img.cong__img.--pu(src='./assets/images/nepu.png')
+      img.cong__img.--ham(src='./assets/images/ham.png')
+      img.cong__img.--kopu(src='./assets/images/kopu.png')
+      img.cong__img.--daf(src='./assets/images/daf.png')

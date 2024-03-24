@@ -1,13 +1,97 @@
 @use '../global/index' as *;
 
 #home-page {
-  & .loading {
-    position: relative;
-    width: 100vw;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  & .mask {
+    background-color: #000000;
+    opacity: 0.45;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  & .memory {
     height: 100vh;
+    position: relative;
+    z-index: $zIndex-memory;
+    overflow: hidden;
+
+    &__mask {
+      background-color: #000000;
+      opacity: 0.45;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: $zIndex-mask;
+    }
+
+    &__frame {
+      display: inline-block;
+      border: 6px solid #d8d8d8;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+      border-radius: 3px;
+      overflow: hidden;
+      width: 16.8rem;
+      height: auto;
+    }
+
+    &__img {
+      display: block;
+    }
+  }
+
+  & .date {
+    @include text(
+      $font-size: 3.2rem,
+      $color: #fff,
+      $font-weight: bold,
+      $line-height: 2.4rem,
+      $letter-spacing: 0.1em
+    );
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: $zIndex-date;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  }
+
+  & .cong {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+    opacity: 0;
+    transition: all 1.2s ease;
+    z-index: $zIndex-cong;
+
+    // ノートのような背景
+    background-color: #fff;
+    background-image: linear-gradient(
+        rgba(238, 238, 238, 1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(238, 238, 238, 1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    padding: 9rem 0;
+
+    &.-show {
+      opacity: 1;
+    }
 
     &__ttl {
       @include text(
@@ -17,37 +101,51 @@
         $letter-spacing: 1rem
       );
       writing-mode: vertical-rl;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 37rem;
     }
 
     &__img {
       position: absolute;
+      transition: all 0.8s ease;
 
       &.--pu {
-        top: 6rem;
-        left: 0;
-        width: 15.3rem;
-        height: 32.6rem;
+        top: 5rem;
+        left: -1rem;
+        width: 16.3rem;
+        height: auto;
+        transform: translate(-100%, 0);
       }
 
       &.--ham {
-        top: 9.2rem;
-        right: 0;
-        width: 8.3rem;
-        height: 13.7rem;
+        top: 7.2rem;
+        right: -1rem;
+        width: 9.3rem;
+        height: auto;
+        transform: translate(100%, 0);
       }
 
       &.--kopu {
-        bottom: 0;
-        left: 0;
-        width: 13.2rem;
-        height: 14rem;
+        bottom: 0rem;
+        left: -1rem;
+        width: 14.2rem;
+        height: auto;
+        transform: translate(-100%, 0);
       }
 
       &.--daf {
-        bottom: 0;
-        right: 0;
+        bottom: -1rem;
+        right: -1rem;
         width: 16.7rem;
-        height: 16.3rem;
+        height: auto;
+        transform: translate(100%, 0);
+      }
+
+      &.-show {
+        transform: translate(0, 0);
       }
     }
   }
