@@ -122,6 +122,7 @@ class TweenTextAnimation extends TextAnimation {
 }
 const cong = document.getElementById('cong');
 const congTtl = document.getElementById('cong-ttl');
+const congImages = document.querySelectorAll('.cong__img');
 const ta = new TextAnimation(congTtl);
 const showCong = () => {
   cong.classList.add('-show');
@@ -129,4 +130,11 @@ const showCong = () => {
   setTimeout(() => {
     ta.animate();
   }, 1000);
+
+  // 1秒遅らせる 出現タイミングは同時
+  setTimeout(() => {
+    congImages.forEach(image => {
+      image.classList.add('-show');
+    });
+  }, 1400);
 };
